@@ -1,53 +1,24 @@
-<div class="d-flex flex-column position-fixed h-100 nav-bar-mobile" [class.d-none]="openedSideNav">
-    <i class="fa fa-bars fa-2x text-white" aria-hidden="true" (click)="openedSideNav=true"></i>
-    <nav class="navbar flex-column p-0">
-        <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a class="nav-link p-0"><i class="fa fa-home text-white" aria-hidden="true"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link p-0"><i class="fa fa-rocket text-white" aria-hidden="true"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link p-0"><i class="fa fa-calculator active-icon" aria-hidden="true"></i></a>
-            </li>
-        </ul>
+<div class="sidebar">
+    <img src="../assets/Logo.png" class="p-3 logo">
+    <nav class="navbar flex-column  justify-content-between side-nav">
+        <div class="text-white"><i class="fa fa-home px-3 py-2 text-white" aria-hidden="true" style="font-size: 30px;"></i>Home</div>
+        <div class="text-white"><i class="fa fa-rocket px-3 py-2  text-white" aria-hidden="true" style="font-size: 30px;"></i> Savings</div>
+        <div class="w-100 active-icon text-blue text-center"><i class="fa fa-calculator px-3 py-2 text-center " aria-hidden="true" style="font-size: 30px;"></i>Interest</div>
+        <div class="text-white"><i class="fa fa-cog py-2  text-white px-3" aria-hidden="true" style="font-size: 30px;"></i>Settings</div>
+        <div class="text-white"><i class="fa fa-user py-2  text-white px-3" aria-hidden="true" style="font-size: 30px;"></i>Account</div>
+        <div class="text-white"><i class="fa fa-sign-out py-2  text-white px-3" aria-hidden="true" style="font-size: 30px;"></i>Logout</div>
     </nav>
-    <div>
-
-    </div>
-
-</div>
-<div class="d-flex flex-column position-fixed h-100 side-nav" *ngIf="openedSideNav">
-    <i class="fa fa-angle-left fa-2x text-white" aria-hidden="true" (click)="openedSideNav=!openedSideNav"></i>
-    <nav class="navbar flex-column p-0">
-        <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a class="nav-link p-0"><i class="fa fa-home text-white" aria-hidden="true"></i><span class="text-white"> HOME</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link p-0"><i class="fa fa-rocket text-white" aria-hidden="true"></i><span class="text-white"> INVESTMENT</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link p-0"><i class="fa fa-calculator text-white" aria-hidden="true"></i><span class="active ml-1"> INTEREST</span></a>
-            </li>
-        </ul>
-    </nav>
-    <div>
-
-    </div>
-
 </div>
 
-<div class="d-flex flex-column p-5" style="padding-left: 100px !important;height: 100vh;width: 100vw;">
+<div class="content p-3">
     <div class="text-blue p-1" style="font-size: 1.5rem;">INTEREST RATE</div>
     <div class="text-blue p-1" style="font-size: 1rem;">Let's see how much you can make</div>
-    <div class="bg-blue intreset-calc my-3">
-        <div>
+    <div class="intreset-calc my-3 row">
+        <div class="col-md-8" style="padding: 1rem;
+        background-color: #083E9E !important;border-radius: 0.5rem;flex: 1;">
             <div class="form-group">
                 <label for="amount">Amount</label>
-                <input type="number" class="form-control" id="amount" aria-describedby="emailHelp" placeholder="Enter Amount" [(ngModel)]="amount">
+                <input type="number" class="form-control" id="amount" aria-describedby="emailHelp" placeholder="Enter Amount" [(ngModel)]="amount" (ngModelChange)="calculateIntreset()">
             </div>
             <div class="form-group">
                 <label for="plan">Savings Plan</label>
@@ -55,56 +26,31 @@
                   <option value="piggyBank">Piggy Bank(10%)</option>
                 </select>
             </div>
-            <div class="form-group row ">
-                <div class="input-group col-md-5 mt-3">
-                    <!-- input box -->
-                    <input class="form-control" to="from" name="mydate" placeholder="From" angular-mydatepicker #dp1="angular-mydatepicker" [(ngModel)]="from" [options]="myDpOptions" (dateChanged)="onDateChanged($event,true)" />
-
-                    <!-- clear date button -->
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary" *ngIf="from" (click)="dp1.clearDate()">
-                    <i class="fa fa-close"></i>
-                  </button>
-                    </div>
-
-                    <!-- toggle calendar button -->
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary" (click)="dp1.toggleCalendar()">
-                    <i class="fa fa-calendar-o"></i>
-                  </button>
-                    </div>
-
-                </div>
-                <div class="col-md-2">
-
-                </div>
-                <div class="input-group col-md-5 mt-3">
-                    <!-- input box -->
-                    <input class="form-control" name="mydate" placeholder="To" angular-mydatepicker #dp="angular-mydatepicker" [(ngModel)]="to" [options]="myDpOptions" (dateChanged)="onDateChanged($event)" />
-
-                    <!-- clear date button -->
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary" *ngIf="to" (click)="dp.clearDate()">
-                  <i class="fa fa-close"></i>
-                </button>
-                    </div>
-
-                    <!-- toggle calendar button -->
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary" (click)="dp.toggleCalendar()">
-                  <i class="fa fa-calendar-o"></i>
-                </button>
-                    </div>
-
-                </div>
+            <div class="form-group">
+                <label for="days">Days</label>
+                <input type="number" class="form-control" id="days" placeholder="Enter Number of Days" [(ngModel)]="days" (ngModelChange)="calculateIntreset()">
             </div>
+
             <div class="d-flex justify-content-center ">
                 <button type="submit" class="btn btn-primary intrest-btn" (click)="calculateIntreset()">Calculate Interest</button>
             </div>
 
         </div>
-        <div class="w-100 text-center my-2" *ngIf="intrestRate">
-            Interest:{{intrestRate}}
+        <div class="col-md-4" style="padding: 2rem;
+        background-color: #083E9E !important;border-radius: 0.5rem;margin: 3rem;">
+            <div class="text-center">
+                Total Balance
+            </div>
+            <div class="text-center">
+                <span class="naira">N </span>{{amount + intrestRate}}
+            </div>
+            <hr/>
+            <div class="text-center">
+                Interest Rate - 10%
+            </div>
+            <div class="text-center">
+                Interest Amount - <span class="naira">N </span>{{intrestRate}}
+            </div>
         </div>
     </div>
 </div>

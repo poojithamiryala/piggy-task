@@ -1,43 +1,77 @@
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: #083E9E;
+    box-shadow: 8px 0px 20px rgba(17, 24, 38, 0.2);
+    border-radius: 0px 50px 50px 0px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a:hover:not(.active) {
+    cursor: pointer;
+}
+
+li .nav-link {
+    line-height: 2;
+}
+
+div.content {
+    margin-left: 250px;
+    padding: 1px 16px;
+}
+
 .side-nav {
-    display: flex !important;
-    flex-direction: column;
-    padding: 1rem !important;
-    justify-content: space-between;
-    width: 150px !important;
-    height: 100% !important;
-    left: 0;
-    background-color: #122864;
-    transition: 0.4s;
-    z-index: 1000;
-    line-height: 3;
+    height: calc(100vh - 100px)
 }
 
-.nav-bar-mobile {
-    display: flex !important;
-    line-height: 3;
-    flex-direction: column;
-    padding: 1rem !important;
-    justify-content: space-between;
-    width: 65px !important;
-    height: 100% !important;
-    left: 0;
-    background-color: #122864;
-    transition: 0.4s;
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+    li .nav-link {
+        line-height: 4;
+    }
+    .side-nav {
+        height: auto;
+    }
 }
 
-.active {
-    background-color: white;
-    color: #122864;
-    padding: 0.2rem;
-    border-radius: 0.55rem;
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+    li .nav-link {
+        line-height: 2;
+    }
+    .side-nav {
+        height: auto;
+    }
 }
 
 .text-blue {
-    color: #122864 !important;
+    color: #083E9E !important;
 }
 
 .bg-blue {
-    background-color: #122864 !important;
+    background-color: #083E9E !important;
 }
 
 .intreset-calc {
@@ -46,11 +80,16 @@
     border-radius: 2rem;
 }
 
+.naira {
+    text-decoration: line-through;
+}
+
 .active-icon {
     background-color: white;
-    color: #122864;
+    color: #083E9E;
     padding: 0.2rem;
-    border-radius: 0.55rem;
+    border-bottom-left-radius: 0.55rem;
+    border-top-left-radius: 0.55rem;
 }
 
 .plan {
@@ -68,7 +107,7 @@
 
 .intrest-btn {
     background: white;
-    color: #122864;
+    color: #083E9E;
     outline: none;
     border: 0;
 }

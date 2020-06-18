@@ -21,8 +21,10 @@ export class AppComponent {
   fromDate: Date;
   toDate: Date;
 
-  amount;
-  intrestRate;
+  amount = 0;
+  intrestRate = 0;
+
+  days = 0;
   // Initialized to specific date (09.10.2018).
   openSideNav() {
 
@@ -39,9 +41,7 @@ export class AppComponent {
   }
 
   calculateIntreset() {
-    const timeDiff = this.toDate.getTime() - this.fromDate.getTime();
-    const days = timeDiff / (1000 * 60 * 60 * 24);
-    this.intrestRate = (this.amount) * 0.1 * (days/365);
-    this.intrestRate=this.intrestRate.toFixed(2);
+    this.intrestRate = (this.amount) * 0.1 * (this.days / 365);
+    this.intrestRate = parseFloat(this.intrestRate.toFixed(2));
   }
 }
